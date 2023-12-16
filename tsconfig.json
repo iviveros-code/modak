@@ -30,7 +30,7 @@
       "@services": ["./src/services"],
       "@navigation": ["./src/navigation"],
       "@hooks": ["./src/hooks"],
-      "@redux": ["./src/redux"],
+      "@redux": ["./src/redux/*"],
       "@i18n": ["./src/i18n"],
       "@helpers": ["./src/helpers"]
     }

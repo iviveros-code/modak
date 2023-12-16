@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { SafeAreaView, Text, Keyboard, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
+import config from 'react-native-config'
 
 import { TextInputComponent } from '@components'
 
@@ -14,6 +15,7 @@ export const OneScreenExample = () => {
   }
 
   const { t } = useTranslation()
+  const isFrom = config.APP_CONFIG ?? ''
 
   return (
     <SafeAreaView style={[styles.container, { paddingHorizontal: 20 }]}>
@@ -32,7 +34,10 @@ export const OneScreenExample = () => {
           autoFocus={true}
           inlineImageLeft='search_icon'
         />
+
+      <Text style={{color:'black'}}> {`I am from ${isFrom}`}</Text>
       </View>
+
     </SafeAreaView>
   )
 }

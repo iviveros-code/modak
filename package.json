@@ -7,7 +7,13 @@
     "ios": "react-native run-ios --simulator='iPhone 14 Pro'",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "ios:dev": "npx react-native run-ios --scheme='development' --simulator='iPhone 15 Pro'",
+    "ios:stg": "npx react-native run-ios --scheme='staging' --simulator='iPhone 15 Pro'",
+    "ios:prod": "npx react-native run-ios --scheme='production' --simulator='iPhone 15 Pro'",
+    "android:dev": "npx react-native run-android --mode=devDebug --appId=com.modak.app.dev",
+    "android:stg": "npx react-native run-android --mode=stgDebug --appId=com.modak.app.stg",
+    "android:prod": "npx react-native run-android --mode=prodDebug --appId=com.modak.app"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.11",
@@ -23,6 +29,7 @@
     "react-hook-form": "^7.46.1",
     "react-i18next": "^13.2.2",
     "react-native": "0.72.4",
+    "react-native-config": "^1.5.1",
     "react-native-device-info": "^10.3.0",
     "react-native-fast-image": "^8.6.3",
     "react-native-localization": "^2.3.2",

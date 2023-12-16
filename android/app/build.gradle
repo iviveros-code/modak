@@ -2,6 +2,14 @@ apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
+project.ext.envConfigFiles = [
+    dev: ".env.development",
+    stg: ".env.staging",
+    prod: ".env.production"
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + '/dotenv.gradle'
+
 import com.android.build.OutputFile
 
 /**
@@ -97,6 +105,7 @@ android {
     namespace "com.modak"
     defaultConfig {
         applicationId "com.modak"
+        resValue "string", "build_config_package", "com.modak"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -129,6 +138,19 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    flavorDimensions "env"
+    productFlavors {
+        dev {
+            applicationId project.env.get("APP_ID")
+        }
+        stg {
+            applicationId project.env.get("APP_ID")
+        }
+        prod {
+            applicationId project.env.get("APP_ID")
         }
     }
 

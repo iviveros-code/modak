@@ -5,6 +5,8 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { Provider as PaperProvider } from 'react-native-paper'
 import SplashScreen from 'react-native-splash-screen'
 
+
+
 import { theme } from '@theme'
 import { Navigation } from '@navigation'
 
@@ -14,6 +16,8 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide()
   }, [])
+
+  
 
   return (
     <ReduxProvider store={store}>
