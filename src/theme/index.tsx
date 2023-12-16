@@ -13,19 +13,8 @@ export const theme = {
     black: '#000000',
     grey: 'grey',
     blue: '#1A73E7',
-    primary_gray: '#888888',
-    primary_green: '#38B000',
-    primary_green_dark: '#004D2A',
-    primary_black: '#434A47',
-    green_disabled: '#CCE8B1',
-    green_disabled_dark: 'rgba(0, 77, 42, 0.3)',
-    secondary_black: '#5A6460',
-    alternative_black: '#4B5561',
-    alernative_gray: '#CECECE',
-    placeholder: '#888888',
-    underline: '#D9D9D9',
-    green_gradient: ['#38B000', '#9DEB51'],
-    green_gradient_inverse: ['#9DEB51', '#38B000'],
+    primary_red: '#rgba(166, 36, 59, 1)',
+    
     shadow: {
       shadowColor: '#000000',
       shadowOffset: {
