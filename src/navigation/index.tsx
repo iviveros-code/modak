@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { OneScreenExample, TwoScreenExample } from '@screens'
 
-import { OneScreenExample, TwoScreenExample, ThreeScreenExample } from '@screens'
-import { NAVIGATION } from '@constants'
+import { SCREEN_NAMES } from '@constants'
 
 import { TabBar } from './components'
 
@@ -11,13 +11,8 @@ export const Navigation = () => {
 
   return (
     <Tab.Navigator screenOptions={TabBar}>
-      <Tab.Screen name={NAVIGATION.HOME.HOME} component={OneScreenExample} options={{ tabBarLabel: 'Home' }} />
-      <Tab.Screen name={NAVIGATION.FAV.FAV} component={TwoScreenExample} options={{ tabBarLabel: 'Favorites' }} />
-      <Tab.Screen
-        name={NAVIGATION.PROFILE.PROFILE}
-        component={ThreeScreenExample}
-        options={{ tabBarLabel: 'Profile' }}
-      />
+      <Tab.Screen name={SCREEN_NAMES.EVENTS} component={OneScreenExample} options={{ tabBarLabel: 'Events' }} />
+      <Tab.Screen name={SCREEN_NAMES.FAV_EVENT} component={TwoScreenExample} options={{ tabBarLabel: 'Favorites' }} />
     </Tab.Navigator>
   )
 }

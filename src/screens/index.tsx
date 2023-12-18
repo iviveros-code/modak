@@ -1,3 +1,3 @@
-export * from './OneScreenExample';
-export * from './TwoScreenExample';
-export * from './ThreeScreenExample';
+export * from './home';
+export * from './favorites';
+

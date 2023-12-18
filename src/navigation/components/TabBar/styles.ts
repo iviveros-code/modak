@@ -1,10 +1,7 @@
-import {StyleSheet} from 'react-native';
-// import {theme} from '@theme';
-// import {IS_ANDROID} from '@constants';
+import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
   tabBarLabelStyle: {
-    // fontFamily: theme.fonts.modernMedium,
     fontSize: 12,
     lineHeight: 16,
   },
@@ -21,6 +18,4 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     height: 50,
   },
-  
-});
-//iPhone without notch mb:25 , and with:0
+})

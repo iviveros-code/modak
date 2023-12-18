@@ -1,35 +1,38 @@
-import React from 'react';
-import {Image} from 'react-native';
+import React from 'react'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { ParamListBase, RouteProp } from '@react-navigation/native'
+import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs'
 
-import {Images, NAVIGATION} from '@constants';
-import {styles} from './styles';
+import { SCREEN_NAMES } from '@constants'
+import { theme } from '@theme'
 
-export const TabBar = ({route}) => ({
-  tabBarIcon: ({focused}) => {
-    let iconName;
+import { styles } from './styles'
 
-    if (route.name === NAVIGATION.HOME.HOME) {
-      iconName = focused
-        ? Images.TabBar.Home_Focused
-        : Images.TabBar.Home_Outline;
-    } else if (route.name === NAVIGATION.FAV.FAV) {
-      iconName = focused
-        ? Images.TabBar.Fav_Focused
-        : Images.TabBar.Fav_Outline;
-    } else if (route.name === NAVIGATION.PROFILE.PROFILE) {
-      iconName = focused
-        ? Images.TabBar.Profile_Focused
-        : Images.TabBar.Profile_Outline;
+interface TabBarProps {
+  route: RouteProp<ParamListBase, string>
+}
+
+export const TabBar: (props: TabBarProps) => BottomTabNavigationOptions = ({ route }) => ({
+  tabBarIcon: ({ focused }) => {
+    let iconName
+    const color = focused ? theme.colors.primary_red : theme.colors.background_grey
+
+    if (route.name === SCREEN_NAMES.EVENTS) {
+      iconName = focused ? 'image' : 'image'
+    } else if (route.name === SCREEN_NAMES.FAV_EVENT) {
+      iconName = focused ? 'favorite' : 'favorite'
+    } else {
+      iconName = 'favorite'
     }
 
-    return <Image source={iconName} style={{width: 30, height: 30}} />;
+    return <Icon name={iconName} size={24} color={color} />
   },
-  tabBarActiveTintColor: 'red',
-  tabBarInactiveTintColor: 'green',
+  tabBarActiveTintColor: theme.colors.primary_red,
+  tabBarInactiveTintColor: theme.colors.grey,
   tabBarLabelStyle: styles.tabBarLabelStyle,
   tabBarItemStyle: styles.tabBarItemStyle,
   tabBarStyle: styles.tabBarStyle,
-  safeAreaInset: {bottom: 'never', top: 'never'},
+  safeAreaInset: { bottom: 'never', top: 'never' },
   headerShown: false,
   lazy: false,
-});
+})
