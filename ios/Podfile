@@ -28,8 +28,14 @@ end
 target 'modak' do
   config = use_native_modules!
 
+ 
+
+
+
   # Flags change depending on the env values.
   flags = get_default_flags()
+  flags[:hermes_enabled] = true
+  flags[:fabric_enabled] = true
 
   pod 'react-native-config/Extension', :path => '../node_modules/react-native-config'
 
@@ -60,5 +66,6 @@ target 'modak' do
       :mac_catalyst_enabled => false
     )
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    
   end
 end

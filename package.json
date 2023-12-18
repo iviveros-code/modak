@@ -37,12 +37,13 @@
     "react-native-responsive-fontsize": "^0.5.1",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^4.5.0",
-    "react-native-screens": "^3.19.0",
+    "react-native-screens": "^3.29.0",
     "react-native-splash-screen": "^3.3.0",
-    "react-native-svg": "^13.13.0",
+    "react-native-svg": "^14.1.0",
     "react-native-vector-icons": "^10.0.0",
     "react-redux": "^8.0.5",
     "redux-persist": "^6.0.0",
+    "rtn-my-date-view": "./RTNMyDateView",
     "yup": "^1.2.0"
   },
   "devDependencies": {

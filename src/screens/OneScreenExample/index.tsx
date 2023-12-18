@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { SafeAreaView, Text, Keyboard, View } from 'react-native'
+import { Text, Keyboard, View } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import config from 'react-native-config'
+import RTNMyDateView from 'rtn-my-date-view/js/RTNMyDateViewNativeComponent'
 
 import { TextInputComponent } from '@components'
 
@@ -18,7 +19,7 @@ export const OneScreenExample = () => {
   const isFrom = config.APP_CONFIG ?? ''
 
   return (
-    <SafeAreaView style={[styles.container, { paddingHorizontal: 20 }]}>
+    <View style={[styles.container, { paddingHorizontal: 20 }]}>
       <Text>{t('Home.welcome')}</Text>
 
       <View style={{ flex: 1, width: '100%' }}>
@@ -35,9 +36,16 @@ export const OneScreenExample = () => {
           inlineImageLeft='search_icon'
         />
 
-      <Text style={{color:'black'}}> {`I am from ${isFrom}`}</Text>
-      </View>
+        <Text style={{ color: 'black' }}> {`I am from ${isFrom}`}</Text>
 
-    </SafeAreaView>
+        <RTNMyDateView
+          style={{ width: '100%', height: 200 }}
+          date={new Date()}
+          onChange={event => {
+            console.log(event.nativeEvent)
+          }}
+        />
+      </View>
+    </View>
   )
 }
