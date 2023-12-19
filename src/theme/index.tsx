@@ -14,7 +14,7 @@ export const theme = {
     grey: 'grey',
     blue: '#1A73E7',
     primary_red: '#rgba(166, 36, 59, 1)',
-    
+
     shadow: {
       shadowColor: '#000000',
       shadowOffset: {
@@ -78,6 +78,10 @@ export const theme = {
     lg: 24,
     xl: 40,
     xxl: 64,
+  },
+  general_spacing: {
+    md: 10,
+    lg: 20,
   },
 
   icon: {

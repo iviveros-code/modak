@@ -9,6 +9,11 @@ export type EventType = {
   title?: string
   title_display?: string | null
   image_url?: string
+  description?: string
+  start_date?: string
+  start_time?: string
+  entrance?: string
+  end_time?: string
 }
 
 type RootStackParamList = {
