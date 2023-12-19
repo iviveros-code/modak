@@ -27,15 +27,28 @@ For iOS:
 In one terminal window, start the React Native packager:
 
 yarn start --reset-cache
-In a new terminal window, run the application:
 yarn ios:dev
+
+***
 For Android:
+
+yarn start --reset-cache
 yarn android:dev
 
-Development Branch
-The functional application can be found in the development branch. Please switch to this branch to access the latest working version of the application. git checkout development
+***
 
+***
+Development Branch
+The functional application can be found in the development branch. Please switch to this branch to access the latest working version of the application. 
+
+git checkout development
+
+***
+
+
+***
 Disclaimer
+
 The native module is located in the feat/calendar branch. For this module, I used Fabric Native Components. Despite following the documentation, there are some unresolved errors due to time constraints. This part of the project is still under development and might not function as expected. git checkout feat/calendar
 For android :
 yarn start --reset-cache
@@ -46,4 +59,6 @@ For iOS:
 yarn start --reset-cache
 cd ios && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
 yarn ios:dev
+
+***
 
