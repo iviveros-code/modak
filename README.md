@@ -1,4 +1,4 @@
-# modak
+# ⚛️ Modak - Technical Exercise Art Institute Of Chicago Catalog App 
 
 This project is a React Native application based on my custom boilerplate: 
 [Boilerplate React Native 071](https://github.com/iviveros-code/boilerplate-react-native-071).
