@@ -1,13 +1,18 @@
 import { FC, useState } from 'react'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native'
 import { RouteProp } from '@react-navigation/native'
 import FastImage from 'react-native-fast-image'
 import { Divider } from 'react-native-paper'
+import { useDispatch, useSelector } from 'react-redux'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { useNavigation } from '@react-navigation/native'
 
-import { RootStackParamList } from '@types'
+import { addFavorite, removeFavorite } from '@redux/favorite-slice'
+import { RootStackParamList, EventType } from '@types'
 import { SCREEN_NAMES } from '@constants'
 import { globalStyles } from '@theme'
 import { Button } from '@components'
+import { RootState } from '@redux/store'
 
 import { styles } from './styles'
 
@@ -20,6 +25,13 @@ type DetailEventScreenProps = {
 export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
   const { event } = route.params
   const [isShowMore, setIsShowMore] = useState(false)
+
+  const favorites = useSelector((state: RootState) => state.favorite.items)
+
+  const isFavorite = (event: EventType) => {
+    return favorites.some(favorite => favorite.id === event.id)
+  }
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
 
   const removeHtmlTags = (str: string | undefined) => {
     return str?.replace(/<[^>]*>?/gm, '')
@@ -35,6 +47,22 @@ export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
 
     return new Date(dateString).toLocaleDateString('en-US', options)
+  }
+
+  const dispatch = useDispatch()
+
+  const handleAddFavorite = (event: EventType) => {
+    dispatch(addFavorite(event))
+    Alert.alert('Success', 'Event saved as favorite')
+  }
+
+  const handleFavoriteToggle = () => {
+    if (isFavorite(event)) {
+      dispatch(removeFavorite(event))
+      navigation.navigate(SCREEN_NAMES.TAB_BAR) // Navega si es necesario
+    } else {
+      handleAddFavorite(event)
+    }
   }
 
   return (
@@ -98,7 +126,11 @@ export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
       <Divider style={styles.divider} />
 
       <View style={[styles.paddingH, styles.bottom]}>
-        <Button title='Save as favorite' mode='contained' onPress={() => console.log('Pressed')} />
+        <Button
+          title={isFavorite(event) ? 'Remove as favorite' : 'Save as favorite'}
+          mode='contained'
+          onPress={handleFavoriteToggle}
+        />
       </View>
     </View>
   )

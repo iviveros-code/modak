@@ -1,11 +1,13 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native'
+
+import { verticalScale, horizontalScale } from '@helpers'
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    marginVertical: verticalScale(10),
+    paddingHorizontal: horizontalScale(20),
   },
-  titleExample: {
-    alignSelf: 'center',
-  },
-});
+  top:{
+    top: verticalScale(5),
+  }
+})
