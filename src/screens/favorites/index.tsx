@@ -3,7 +3,7 @@ import {SafeAreaView, Text} from 'react-native';
 
 import {styles} from './styles';
 
-export const TwoScreenExample = () => {
+export const Favorite = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titleExample}>TwoScreenExample</Text>

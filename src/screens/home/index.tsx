@@ -11,7 +11,7 @@ import { SCREEN_NAMES } from '@constants'
 
 import { styles } from './styles'
 
-export const OneScreenExample = () => {
+export const Events = () => {
   const [page, setPage] = useState(1)
   const [dataSource, setDataSource] = useState<EventType[]>([])
   const [isListEnd, setIsListEnd] = useState(false)
