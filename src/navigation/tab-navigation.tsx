@@ -6,7 +6,7 @@ import { SCREEN_NAMES } from '@constants'
 
 import { TabBar } from './components'
 
-export const Navigation = () => {
+export const TabNavigation = () => {
   const Tab = createBottomTabNavigator()
 
   return (

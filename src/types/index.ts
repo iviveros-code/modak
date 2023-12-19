@@ -1,5 +1,7 @@
 import { SCREEN_NAMES } from '@constants'
 
+export type ScreenName = (typeof SCREEN_NAMES)[keyof typeof SCREEN_NAMES]
+
 export type EventType = {
   id?: number
   api_model?: string
@@ -11,7 +13,8 @@ export type EventType = {
 
 type RootStackParamList = {
   [SCREEN_NAMES.EVENTS]: undefined
-  [SCREEN_NAMES.EventDetails]: { event: EventType }
+  [SCREEN_NAMES.DETAIL_EVENT]: { event: EventType }
+  [SCREEN_NAMES.TAB_BAR]: undefined
 }
 
 export { type RootStackParamList }

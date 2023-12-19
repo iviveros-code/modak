@@ -1,12 +1,6 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native'
 
-import {RFPercentage} from 'react-native-responsive-fontsize';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-
-import {theme} from '@theme';
+import { horizontalScale, verticalScale } from '@helpers'
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,16 +8,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titleExample: {
-    alignSelf: 'center',
+  paddingContainer: {
+    paddingHorizontal: horizontalScale(20),
   },
-  image: {
-    width: wp(50),
-    height: hp(20),
+  containerEvent: {
+    paddingHorizontal: horizontalScale(10),
+    paddingVertical: verticalScale(20),
   },
-  title: {
-    fontSize: RFPercentage(3),
-    fontWeight: '700',
-    color: theme.colors.black,
-  },
-});
+})

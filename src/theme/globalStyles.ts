@@ -153,27 +153,17 @@ export const createGlobalStyles = (theme: any) =>
     title: {
       textAlign: 'center',
     },
-    footerButtonsKeyboard: {
-      top: hp(25),
-    },
+
     row: {
       flexDirection: 'row',
       alignItems: 'center',
     },
-    overlapLayout: {
-      bottom: hp(7.5),
-    },
+
     jcontent: {
       justifyContent: 'space-between',
     },
-    screen: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      alignItems: 'center',
+    center: {
+      flex: 1,
       justifyContent: 'center',
-      zIndex: 100,
     },
   })

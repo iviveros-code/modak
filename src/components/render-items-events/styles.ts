@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native'
 
-import { FontSize18 } from '@constants'
-import { theme } from '@theme'
-import { horizontalScale } from '@helpers'
+import { horizontalScale, moderateScale, verticalScale } from '@helpers'
 
 export const styles = StyleSheet.create({
   image: {
-    width: 150,
-    height: 150,
+    width: moderateScale(150),
+    height: moderateScale(150),
     resizeMode: 'cover',
   },
   containerTitle: {
@@ -18,5 +16,6 @@ export const styles = StyleSheet.create({
   title: {
     flexWrap: 'wrap',
     textAlign: 'left',
+    marginTop: verticalScale(2),
   },
 })

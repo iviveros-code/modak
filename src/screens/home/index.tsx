@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, Text, View, FlatList } from 'react-native'
+import { SafeAreaView, Text, View, FlatList, ActivityIndicator } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 
 import { useGetEventsQuery } from '@redux/events-slice'
-import { EventType } from '@types'
+import { EventType, RootStackParamList } from '@types'
 import { EventItem } from '@components'
+import { globalStyles, theme } from '@theme'
+import { SCREEN_NAMES } from '@constants'
 
 import { styles } from './styles'
 
@@ -17,6 +21,9 @@ export const OneScreenExample = () => {
   const [isListEnd, setIsListEnd] = useState(false)
 
   const { data: events, error, isLoading, isFetching } = useGetEventsQuery({ limit: 10, page })
+
+  type DetailEventNavigationProp = StackNavigationProp<RootStackParamList, typeof SCREEN_NAMES.DETAIL_EVENT>
+  const navigation = useNavigation<DetailEventNavigationProp>()
 
   useEffect(() => {
     if (events?.data && !isFetching) {
@@ -47,7 +54,7 @@ export const OneScreenExample = () => {
           </Text>
         )
       } else {
-        return <Text>Error desconocido</Text>
+        return <Text>Error unknow</Text>
       }
     }
 
@@ -55,32 +62,45 @@ export const OneScreenExample = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.container, { paddingHorizontal: 20 }]}>
+    <SafeAreaView style={[styles.container, styles.paddingContainer]}>
       <Text>{t('Home.welcome')}</Text>
 
-      {isLoading && page === 1 && <Text>Cargando...</Text>}
-      {renderError()}
-      <FlatList
-        data={dataSource}
-        renderItem={({ item }: { item: EventType }) => (
-          <View style={{ paddingHorizontal: 10, paddingVertical: 20 }}>
-            <EventItem item={item} onPress={() => {}} />
-          </View>
-        )}
-        keyExtractor={(item, index) => item.id + '_' + index}
-        onEndReached={loadMoreEvents}
-        onEndReachedThreshold={0.5} // Ajusta este valor según tus necesidades
-        ListFooterComponent={() => (isLoading || isFetching ? <Text>Cargando más...</Text> : null)}
-        numColumns={2}
-        ListEmptyComponent={() => (
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>No hay eventos</Text>
-          </View>
-        )}
-        showsVerticalScrollIndicator={false}
-      />
+      {isLoading ? (
+        <View style={globalStyles.center}>
+          <ActivityIndicator size='large' color={theme.colors.primary_red} />
+        </View>
+      ) : (
+        <>
+          {isLoading && page === 1 && <Text>Loading...</Text>}
+          {renderError()}
+          <FlatList
+            data={dataSource}
+            renderItem={({ item }: { item: EventType }) => (
+              <View style={styles.containerEvent}>
+                <EventItem
+                  item={item}
+                  onPress={() => {
+                    navigation.navigate(SCREEN_NAMES.DETAIL_EVENT, { event: item })
+                  }}
+                />
+              </View>
+            )}
+            keyExtractor={(item, index) => item.id + '_' + index}
+            onEndReached={loadMoreEvents}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={() => (isLoading || isFetching ? <Text>Please wait, loading more...</Text> : null)}
+            numColumns={2}
+            ListEmptyComponent={() => (
+              <View style={globalStyles.center}>
+                <Text>No events</Text>
+              </View>
+            )}
+            showsVerticalScrollIndicator={false}
+          />
 
-      <Text>PAGE :{page}</Text>
+          <Text>PAGE :{page}</Text>
+        </>
+      )}
     </SafeAreaView>
   )
 }
