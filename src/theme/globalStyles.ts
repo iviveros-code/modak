@@ -56,7 +56,7 @@ export const createGlobalStyles = (theme: any) =>
     },
     text_fs14: {
       fontSize: FontSize14,
-      color: theme.colors.primary_black,
+      color: theme.colors.black,
       ...theme.fonts.regular,
     },
     text_fs14_sb: {

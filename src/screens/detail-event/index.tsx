@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { addFavorite, removeFavorite } from '@redux/favorite-slice'
 import { RootStackParamList, EventType } from '@types'
-import { SCREEN_NAMES } from '@constants'
+import { SCREEN_NAMES, Images } from '@constants'
 import { globalStyles } from '@theme'
 import { Button } from '@components'
 import { RootState } from '@redux/store'
@@ -25,6 +25,8 @@ type DetailEventScreenProps = {
 export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
   const { event } = route.params
   const [isShowMore, setIsShowMore] = useState(false)
+
+  console.log('event', event?.image_url)
 
   const favorites = useSelector((state: RootState) => state.favorite.items)
 
@@ -67,7 +69,10 @@ export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
 
   return (
     <View>
-      <FastImage source={{ uri: event?.image_url }} style={styles.image} />
+      <FastImage
+        source={event?.image_url ? { uri: event.image_url } : Images.General.ImagePlaceholder}
+        style={styles.image}
+      />
       <View style={globalStyles.containerTitle}>
         <Text style={[globalStyles.text_fs16, styles.weight]}>{event?.title}</Text>
       </View>

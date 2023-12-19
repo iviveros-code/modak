@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { SafeAreaView, Text, View, ActivityIndicator, Animated, StatusBar, Image, TouchableOpacity } from 'react-native'
+import { SafeAreaView, Text, View, ActivityIndicator, Animated, StatusBar, TouchableOpacity } from 'react-native'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
+import FastImage from 'react-native-fast-image'
 
 import { useGetEventsQuery } from '@redux/events-slice'
 import { EventType, RootStackParamList } from '@types'
 import { globalStyles, theme } from '@theme'
-import { SCREEN_NAMES } from '@constants'
+import { SCREEN_NAMES, Images } from '@constants'
 
 import { styles } from './styles'
 
@@ -75,7 +76,7 @@ export const Events = () => {
           {renderError()}
           <StatusBar hidden />
           <View style={styles.paddingContainer}>
-            <Text>PAGE :{page}</Text>
+            <Text style={globalStyles.text_fs14}>PAGE :{page}</Text>
             {renderError()}
             <Animated.FlatList
               data={dataSource}
@@ -103,7 +104,10 @@ export const Events = () => {
                       onPress={() => navigation.navigate(SCREEN_NAMES.DETAIL_EVENT, { event: item })}
                       style={styles.button}
                     >
-                      <Image source={{ uri: item?.image_url }} style={styles.image} />
+                      <FastImage
+                        source={item?.image_url ? { uri: item.image_url } : Images.General.ImagePlaceholder}
+                        style={styles.image}
+                      />
                       <View style={styles.containerTitle}>
                         <Text style={[styles.title, globalStyles.text_fs12_black, styles.weight]}>{item.title}</Text>
                       </View>
