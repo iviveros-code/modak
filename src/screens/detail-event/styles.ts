@@ -29,4 +29,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     marginLeft: horizontalScale(55),
   },
+  bottom: {
+   marginTop: verticalScale(120),
+  },
 })

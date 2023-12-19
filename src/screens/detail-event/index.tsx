@@ -6,7 +6,8 @@ import { Divider } from 'react-native-paper'
 
 import { RootStackParamList } from '@types'
 import { SCREEN_NAMES } from '@constants'
-import { theme, globalStyles } from '@theme'
+import { globalStyles } from '@theme'
+import { Button } from '@components'
 
 import { styles } from './styles'
 
@@ -95,6 +96,10 @@ export const DetailEventScreen: FC<DetailEventScreenProps> = ({ route }) => {
         )}
       </ScrollView>
       <Divider style={styles.divider} />
+
+      <View style={[styles.paddingH, styles.bottom]}>
+        <Button title='Save as favorite' mode='contained' onPress={() => console.log('Pressed')} />
+      </View>
     </View>
   )
 }
